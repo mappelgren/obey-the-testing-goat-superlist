@@ -12,17 +12,18 @@ class SmokeTest(TestCase):
 
 
     def test_home_starts_with_html_tag(self):
-        request = HttpRequest()
-        response = home_page(request)
+        response = get_home_page_response()
         self.assertTrue(response.content.startswith(b'<html>'))
 
     def test_home_contains_correct_title(self):
-        request = HttpRequest()
-        response = home_page(request)
+        response = get_home_page_response()
         self.assertIn(b'<title>To-Do lists</title>', response.content)
 
     def test_home_ends_with_html_tag(self):
-        request = HttpRequest()
-        response = home_page(request)
+        response = get_home_page_response()
         self.assertTrue(response.content.endswith(b'</html>'))
 
+def get_home_page_response():
+    request = HttpRequest()
+    response = home_page(request)
+    return response
