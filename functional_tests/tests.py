@@ -20,7 +20,7 @@ class NewVisitorTest(LiveServerTestCase):
     def test_can_start_a_list_and_retrieve_it_later(self):
         # Edith has heard about a cool new online to-do app. She goes
         # to check out its homepage
-        self.browser.get('http://localhost:8000')
+        self.browser.get(self.live_server_url)
 
         #she notices the page title and header mention to-do lists
         self.assertIn('To-Do', self.browser.title)
@@ -64,7 +64,7 @@ class NewVisitorTest(LiveServerTestCase):
 
         # Francis visits the home page. There is no sign of Edith's list
         self.browser.get(self.live_server_url)
-        page_text = self.browser.find_elements_by_tag_name('body').text
+        page_text = self.browser.find_element_by_tag_name('body').text
         self.assertNotIn('Buy peacock feathers', page_text)
         self.assertNotIn('make a fly', page_text)
 
